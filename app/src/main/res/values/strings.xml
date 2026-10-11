@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tab_beton">Beton</string>
+    <string name="tab_mortier">Mortier</string>
+    <string name="tab_cout">Cout</string>
+    <string name="tab_carnet">Carnet</string>
+    <string name="calc_title">Calculateur beton (hors ligne)</string>
+    <string name="length">Longueur (m)</string>
+    <string name="width">Largeur (m)</string>
+    <string name="thick">Epaisseur (cm)</string>
+    <string name="loss">Pertes (%)</string>
+    <string name="mortar_title">Calculateur mortier</string>
+    <string name="vol">Volume (m3)</string>
+    <string name="cost_title">Cout materiaux (DZD)</string>
+    <string name="cement_bag">Sac ciment 50kg (DZD)</string>
+    <string name="sand">Sable par m3 (DZD)</string>
+    <string name="gravel">Gravier par m3 (DZD)</string>
+    <string name="vol_dosage">Volume beton (m3, dosage 300)</string>
+    <string name="offline_note">Prix modifiables, 100% hors ligne. Aucun compte.</string>
+    <string name="log_title">Carnet de chantier (Room, offline)</string>
+    <string name="log_hint">Mesure / note</string>
+    <string name="save">Enregistrer</string>
+</resources>
