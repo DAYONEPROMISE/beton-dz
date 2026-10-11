@@ -5,10 +5,19 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AttachMoney
+import androidx.compose.material.icons.filled.Book
+import androidx.compose.material.icons.filled.Calculate
+import androidx.compose.material.icons.filled.List
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import androidx.room.Room
 import kotlinx.coroutines.launch
@@ -21,16 +30,29 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+private data class BetonTab(val label: String, val icon: ImageVector)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BetonDzApp(db: AppDb) {
     var tab by remember { mutableIntStateOf(0) }
-    MaterialTheme {
+    val tabs = listOf(
+        BetonTab("Beton", Icons.Filled.Calculate),
+        BetonTab("Mortier", Icons.Filled.List),
+        BetonTab("Cout", Icons.Filled.AttachMoney),
+        BetonTab("Carnet", Icons.Filled.Book)
+    )
+    DzTheme {
         Scaffold(topBar = { TopAppBar(title = { Text("BetonDZ") }) },
             bottomBar = {
                 NavigationBar {
-                    listOf("Beton", "Mortier", "Cout", "Carnet").forEachIndexed { i, t ->
-                        NavigationBarItem(selected = tab == i, onClick = { tab = i }, label = { Text(t) }, icon = {})
+                    tabs.forEachIndexed { i, t ->
+                        NavigationBarItem(
+                            selected = tab == i,
+                            onClick = { tab = i },
+                            label = { Text(t.label) },
+                            icon = { Icon(t.icon, contentDescription = t.label) }
+                        )
                     }
                 }
             }) { p ->
@@ -63,8 +85,13 @@ fun ConcreteScreen() {
         OutlinedTextField(w, { w = it }, label = { Text("Largeur (m)") })
         OutlinedTextField(t, { t = it }, label = { Text("Epaisseur (cm)") })
         OutlinedTextField(loss, { loss = it }, label = { Text("Pertes (%)") })
-        Dosages.concretes.forEachIndexed { i, d ->
-            Row { RadioButton(idx == i, { idx = i }); Text(d.cementKgM3.toInt().toString() + " kg/m3") }
+        Column(Modifier.selectableGroup()) {
+            Dosages.concretes.forEachIndexed { i, d ->
+                Row(Modifier.fillMaxWidth().selectable(selected = idx == i, onClick = { idx = i }, role = Role.RadioButton).padding(vertical = 4.dp)) {
+                    RadioButton(selected = idx == i, onClick = null)
+                    Text(d.cementKgM3.toInt().toString() + " kg/m3")
+                }
+            }
         }
         res?.let {
             HorizontalDivider()
@@ -86,8 +113,13 @@ fun MortarScreen() {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text("Calculateur mortier", style = MaterialTheme.typography.titleMedium)
         OutlinedTextField(vol, { vol = it }, label = { Text("Volume (m3)") })
-        Dosages.mortars.forEachIndexed { i, m ->
-            Row { RadioButton(idx == i, { idx = i }); Text(m.cementKgM3.toInt().toString() + " kg/m3") }
+        Column(Modifier.selectableGroup()) {
+            Dosages.mortars.forEachIndexed { i, m ->
+                Row(Modifier.fillMaxWidth().selectable(selected = idx == i, onClick = { idx = i }, role = Role.RadioButton).padding(vertical = 4.dp)) {
+                    RadioButton(selected = idx == i, onClick = null)
+                    Text(m.cementKgM3.toInt().toString() + " kg/m3")
+                }
+            }
         }
         r?.let {
             Text("Ciment: " + "%.0f".format(it.cementKg) + " kg = " + it.bagsRoundedUp + " sacs")
