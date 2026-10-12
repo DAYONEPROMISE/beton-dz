@@ -20,4 +20,6 @@
     <string name="log_title">Carnet de chantier (Room, offline)</string>
     <string name="log_hint">Mesure / note</string>
     <string name="save">Enregistrer</string>
+    <string name="empty_title">Aucune mesure pour l\'instant</string>
+    <string name="empty_hint">Vos calculs enregistrés apparaîtront ici, même hors ligne.</string>
 </resources>
