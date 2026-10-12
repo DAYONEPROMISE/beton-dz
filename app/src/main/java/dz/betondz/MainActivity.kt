@@ -95,12 +95,15 @@ fun ConcreteScreen() {
             }
         }
         res?.let {
-            HorizontalDivider()
-            Text("Volume avec pertes: " + "%.2f".format(it.volumeM3) + " m3")
-            Text("Ciment: " + "%.0f".format(it.cementKg) + " kg = " + it.bagsRoundedUp + " sacs de 50 kg")
-            Text("Sable: " + "%.0f".format(it.sandKg) + " kg (" + "%.2f".format(it.sandM3) + " m3)")
-            Text("Gravier: " + "%.0f".format(it.gravelKg) + " kg (" + "%.2f".format(it.gravelM3) + " m3)")
-            Text("Eau: " + "%.0f".format(it.waterL) + " L (E/C 0.50)")
+            ElevatedCard(Modifier.fillMaxWidth()) {
+                Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    Text("Volume avec pertes: " + "%.2f".format(it.volumeM3) + " m3")
+                    Text("Ciment: " + "%.0f".format(it.cementKg) + " kg = " + it.bagsRoundedUp + " sacs de 50 kg")
+                    Text("Sable: " + "%.0f".format(it.sandKg) + " kg (" + "%.2f".format(it.sandM3) + " m3)")
+                    Text("Gravier: " + "%.0f".format(it.gravelKg) + " kg (" + "%.2f".format(it.gravelM3) + " m3)")
+                    Text("Eau: " + "%.0f".format(it.waterL) + " L (E/C 0.50)")
+                }
+            }
         }
     }
 }
@@ -164,6 +167,12 @@ fun LogbookScreen(db: AppDb) {
                 if (title.isNotBlank()) { db.entries().insert(SiteEntry(title = title, details = title, totalDzd = 0.0)); title = ""; items = db.entries().all() }
             }
         }) { Text(stringResource(R.string.save)) }
+        if (items.isEmpty()) {
+            DzEmptyState(
+                title = stringResource(R.string.empty_title),
+                hint = stringResource(R.string.empty_hint)
+            )
+        }
         items.forEach { e -> Text(" - " + e.title) }
     }
 }

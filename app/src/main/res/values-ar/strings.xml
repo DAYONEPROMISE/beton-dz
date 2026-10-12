@@ -20,4 +20,6 @@
     <string name="log_title">دفتر الورشة</string>
     <string name="log_hint">قياس / ملاحظة</string>
     <string name="save">حفظ</string>
+    <string name="empty_title">لا قياسات بعد</string>
+    <string name="empty_hint">ستظهر حساباتك المحفوظة هنا، حتى دون إنترنت.</string>
 </resources>
