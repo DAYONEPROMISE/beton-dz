@@ -44,3 +44,4 @@ class CalculatorTest {
     fun `rejects zero volume`() {
         Calculator.concrete(0.0, Dosages.concretes.first())
     }
+}
