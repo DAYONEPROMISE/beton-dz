@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_title">BetonDZ</string>
     <string name="tab_beton">Beton</string>
     <string name="tab_mortier">Mortier</string>
     <string name="tab_cout">Cout</string>
@@ -21,5 +22,13 @@
     <string name="log_hint">Mesure / note</string>
     <string name="save">Enregistrer</string>
     <string name="empty_title">Aucune mesure pour l\'instant</string>
-    <string name="empty_hint">Vos calculs enregistrés apparaîtront ici, même hors ligne.</string>
+    <string name="empty_hint">Vos calculs enregistres apparaitront ici, meme hors ligne.</string>
+    <string name="dosage_cleanliness_150">Beton de proprete</string>
+    <string name="dosage_light_250">Beton leger</string>
+    <string name="dosage_slab_300">Dalle</string>
+    <string name="dosage_foundation_350">Fondation</string>
+    <string name="dosage_reinforced_400">Beton arme</string>
+    <string name="dosage_mortar_laying_250">Mortier de pose</string>
+    <string name="dosage_mortar_render_300">Mortier d\'enduit</string>
+    <string name="dosage_mortar_screed_350">Mortier de chape</string>
 </resources>
